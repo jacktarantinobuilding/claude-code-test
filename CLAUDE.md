@@ -70,3 +70,41 @@ This is a RAG (Retrieval-Augmented Generation) system for course materials with 
 - Documents auto-load from `../docs` on startup
 - No-cache headers set for development static files
 - Session-based conversation history (max 2 exchanges)
+
+## Code Quality Tools
+
+The project includes essential code quality tools:
+
+- **black**: Code formatter for consistent style
+- **ruff**: Fast linter for error detection and code improvements
+- **mypy**: Type checker for Python
+- **isort**: Import sorter
+
+**Quick commands:**
+```bash
+# Install dev dependencies
+uv sync --group dev
+
+# Format code
+make format
+# or manually:
+uv run black .
+uv run isort .
+uv run ruff check --fix .
+
+# Run quality checks
+make check
+# or manually:
+uv run ruff check .
+uv run black --check --diff .
+uv run isort --check-only --diff .
+uv run mypy backend/ main.py
+
+# Individual tools
+make lint        # Run ruff linter
+make type-check  # Run mypy
+```
+
+**Scripts available:**
+- `scripts/format-code.sh` / `scripts/format-code.ps1` - Auto-format code
+- `scripts/quality-check.sh` / `scripts/quality-check.ps1` - Run all quality checks
